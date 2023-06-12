@@ -44,8 +44,9 @@ function Form({ submitHandler }) {
 
     //to validate the email
     function EmailCheck() {
-      if (email.includes("@")) return false;
-      else return true;
+      if (email.includes("@") && email.includes(".com")) {
+        return false;
+      } else return true;
     }
 
     //validate telephone
@@ -144,9 +145,14 @@ function Form({ submitHandler }) {
           Submit
         </button>
       </div>
-      {popup && <Popup Message={popupMessage} popupHandler={()=>{
-        setPopup(!popup);
-      }}/>}
+      {popup && (
+        <Popup
+          Message={popupMessage}
+          popupHandler={() => {
+            setPopup(!popup);
+          }}
+        />
+      )}
     </>
   );
 }
