@@ -101,21 +101,28 @@ ol {
   padding-left: 60px;
 }
 
-.error{
-color: red;
-font-size: 15px;
-padding-left: 12px;
-margin-top: 4px;
+.error {
+  color: red;
+  font-size: 15px;
+  padding-left: 12px;
+  margin-top: 4px;
 }
-.popup-wrapper{
- text-align: center;
- z-index: 10;
- i{
+.popup-wrapper {
+  text-align: center;
+  z-index: 10;
+  transition-delay: 2s;
+
+  i {
     color: red;
     font-size: 48px;
     opacity: 0.8;
- }
-.popup{
+    @media screen and (max-width: 991px) {
+    font-size: 32px;
+
+    }
+
+  }
+  .popup {
     font-size: 24px;
     background-color: white;
     box-shadow: 5px 0 20px gray;
@@ -125,7 +132,12 @@ margin-top: 4px;
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     z-index: 1;
-}
+    @media screen and (max-width: 991px) {
+      padding: 20px 40px;
+      width: 90%;
+      font-size: 18px;
+    }
+  }
 }

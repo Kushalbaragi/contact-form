@@ -9,7 +9,7 @@ function Contact() {
     }
   return (
     <>
-      <div className="container mt-5 contact-page">
+      <div className="container my-5 contact-page">
         <h1 className="">Contact us</h1>
         <p className="mb-0">We love questions and feedback- and we're always happy to help!</p>
         <p >Here are some ways to contact us</p>
