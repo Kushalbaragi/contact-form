@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import Popup from "./Popup";
+import { initializeApp } from "firebase/app";
+// import firebase from 'firebase/app';
+import {getFirestore} from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
+
 
 function Form({ submitHandler }) {
   let [emailError, setEmailError] = useState(false);
   let [phoneError, setPhoneError] = useState(false);
   let [popup, setPopup] = useState(false);
   let [popupMessage, setPopupMessage] = useState("");
+
+
+
 
   function Handler(e) {
     e.preventDefault();
@@ -14,6 +22,47 @@ function Form({ submitHandler }) {
     let phone = document.getElementById("Phone").value;
     let organisation = document.getElementById("Organisation").value;
     let message = document.getElementById("Message").value;
+
+
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB8ij3h5Im8wDraoHcWM6pMBd5-bfIUVZc",
+      authDomain: "contactform-2a3ef.firebaseapp.com",
+      databaseURL: "https://contactform-2a3ef-default-rtdb.firebaseio.com",
+      projectId: "contactform-2a3ef",
+      storageBucket: "contactform-2a3ef.appspot.com",
+      messagingSenderId: "775001205742",
+      appId: "1:775001205742:web:b2941db952522d69b57cff"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db=getFirestore(app);
+
+    const userCollectionRef=collection(db,'contactForm');
+    addDoc(userCollectionRef,{
+      Username :name,
+      mail : email
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
     if (
       emptySring("Name", name) ||
@@ -30,6 +79,8 @@ function Form({ submitHandler }) {
       setPhoneError(true);
       return null;
     } else {
+      // console.log(document.getElementById("submitForm"));
+
       submitHandler();
     }
 
@@ -141,7 +192,12 @@ function Form({ submitHandler }) {
             />
           </div>
         </div>
-        <button className="btn btn-dark float-end" onClick={Handler}>
+        <button
+          id="submitForm"
+          type="submit"
+          className="btn btn-dark float-end"
+          onClick={Handler}
+        >
           Submit
         </button>
       </div>

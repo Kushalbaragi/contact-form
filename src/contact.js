@@ -13,7 +13,7 @@ function Contact() {
         <h1 className="">Contact us</h1>
         <p className="mb-0">We love questions and feedback- and we're always happy to help!</p>
         <p >Here are some ways to contact us</p>
-        <form className="container mt-4 bg-body-secondary w-100 h-100vh rounded">
+        <form className="container mt-4 bg-body-secondary w-100 h-100vh rounded" id='form'>
           <div className="row border border-dark-subtle px-3 rounded">
             <div className="col-lg-8 col-md-12 py-4 left">
                 {

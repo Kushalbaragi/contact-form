@@ -1,4 +1,3 @@
-import Recct from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './assets/style/index.scss';
