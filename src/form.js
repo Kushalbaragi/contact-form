@@ -75,7 +75,7 @@ function Form({ submitHandler }) {
 
     //validate telephone
     function telephoneCheck() {
-      if (phone.length === 10) return false;
+      if (phone.length >= 10) return false;
       else return true;
     }
   }

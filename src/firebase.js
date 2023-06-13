@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import {getFirestore} from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB8ij3h5Im8wDraoHcWM6pMBd5-bfIUVZc",
+    apiKey: process.env.FIREBASE_API,
     authDomain: "contactform-2a3ef.firebaseapp.com",
     databaseURL: "https://contactform-2a3ef-default-rtdb.firebaseio.com",
     projectId: "contactform-2a3ef",
