@@ -1,6 +1,6 @@
 import React from "react";
-import Contact from "./contact";
-import Overview from "./overview";
+import Contact from "./components/contact";
+import Overview from "./components/overview";
 
 function App() {
   return (

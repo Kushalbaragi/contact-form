@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Popup from "./Popup";
-import { db } from "./firebase";
+import { db } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
 
 function Form({ submitHandler }) {
