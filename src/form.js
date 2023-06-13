@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import Popup from "./Popup";
-import { initializeApp } from "firebase/app";
-// import firebase from 'firebase/app';
-import {getFirestore} from "firebase/firestore";
+import { db } from "./firebase";
 import { addDoc, collection } from "firebase/firestore";
-
 
 function Form({ submitHandler }) {
   let [emailError, setEmailError] = useState(false);
@@ -12,9 +9,7 @@ function Form({ submitHandler }) {
   let [popup, setPopup] = useState(false);
   let [popupMessage, setPopupMessage] = useState("");
 
-
-
-
+  //function to handle the form submission
   function Handler(e) {
     e.preventDefault();
     let name = document.getElementById("Name").value;
@@ -22,47 +17,6 @@ function Form({ submitHandler }) {
     let phone = document.getElementById("Phone").value;
     let organisation = document.getElementById("Organisation").value;
     let message = document.getElementById("Message").value;
-
-
-
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyB8ij3h5Im8wDraoHcWM6pMBd5-bfIUVZc",
-      authDomain: "contactform-2a3ef.firebaseapp.com",
-      databaseURL: "https://contactform-2a3ef-default-rtdb.firebaseio.com",
-      projectId: "contactform-2a3ef",
-      storageBucket: "contactform-2a3ef.appspot.com",
-      messagingSenderId: "775001205742",
-      appId: "1:775001205742:web:b2941db952522d69b57cff"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const db=getFirestore(app);
-
-    const userCollectionRef=collection(db,'contactForm');
-    addDoc(userCollectionRef,{
-      Username :name,
-      mail : email
-    })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 
     if (
       emptySring("Name", name) ||
@@ -72,14 +26,31 @@ function Form({ submitHandler }) {
       emptySring("Message", message)
     ) {
       return null;
-    } else if (EmailCheck()) {
+    } 
+    
+    else if (EmailCheck()) {
       setEmailError(true);
       return null;
-    } else if (telephoneCheck()) {
+    } 
+    
+    
+    else if (telephoneCheck()) {
       setPhoneError(true);
       return null;
-    } else {
-      // console.log(document.getElementById("submitForm"));
+    } 
+    
+    
+    else {
+      //to post data into fire database
+      const userCollectionRef = collection(db, "contactForm");
+
+      addDoc(userCollectionRef, {
+        Name: name,
+        Email: email,
+        Telephone: phone,
+        Organisation: organisation,
+        Message: message,
+      });
 
       submitHandler();
     }
@@ -93,6 +64,7 @@ function Form({ submitHandler }) {
       }
     }
 
+    
     //to validate the email
     function EmailCheck() {
       if (email.includes("@") && email.includes(".com")) {
@@ -100,16 +72,18 @@ function Form({ submitHandler }) {
       } else return true;
     }
 
+
     //validate telephone
     function telephoneCheck() {
       if (phone.length === 10) return false;
       else return true;
     }
   }
+
   return (
     <>
       <h3>Send us a message</h3>
-      <p>Send us a message and we'll respond within 24 hour</p>
+      <p>Send us a message and we'll respond within 24 hours.</p>
 
       <div className="container py-3">
         <div className="row">
@@ -153,7 +127,7 @@ function Form({ submitHandler }) {
             </label>
             <input
               placeholder="Phone number"
-              type="number"
+              type="tel"
               id="Phone"
               name="number"
               className="form-control"
